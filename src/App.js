@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     if (yearMonthData.year && yearMonthData.month) {
       const date = new Date(yearMonthData.year, yearMonthData.month - 1);
-      const firstDay = date.getDay();
+      let firstDay = date.getDay();
       const lastDateOfMonth = new Date(
         yearMonthData.year,
         yearMonthData.month,
@@ -22,15 +22,15 @@ function App() {
       const updatedDays = new Array(42).fill(null);
 
       for (let i = 1; i <= lastDateOfMonth; i++) {
-        updatedDays[i + firstDay - 1] = i;
+        updatedDays[firstDay++] = i;
       }
+
       setDays(updatedDays);
     }
   }, [yearMonthData]);
 
   return (
     <div className="App px-6 md:px-20 pt-10 max-w-screen-md mx-auto space-y-2">
-     
       <SelectYearMonth
         yearMonthData={yearMonthData}
         setYearMonth={setYearMonth}

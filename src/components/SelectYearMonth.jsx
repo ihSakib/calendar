@@ -1,15 +1,16 @@
 import React from "react";
 
 export default function SelectYearMonth({ yearMonthData, setYearMonth }) {
+ 
   function handleSelectYear(e) {
     const year = e.target.value;
-    console.log(year)
     if (year > 0 || year === "") {
       setYearMonth((prev) => {
         return { ...prev, [e.target.name]: year };
       });
     }
   }
+
   function handleSelectMonth(e) {
     setYearMonth((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -34,7 +35,7 @@ export default function SelectYearMonth({ yearMonthData, setYearMonth }) {
           onChange={handleSelectMonth}
           value={yearMonthData.month}
         >
-          <option>Choose Month</option>
+          <option value="">Choose Month</option>
           <option value="1">January</option>
           <option value="2">February</option>
           <option value="3">March</option>
